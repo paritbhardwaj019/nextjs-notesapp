@@ -25,12 +25,12 @@ export async function Navbar() {
         </Link>
 
         <div className="flex items-center gap-x-5">
-          <Link href="/dashboard" className="font-light hover:underline">
+          <Link
+            href="/dashboard"
+            className="font-light hover:underline text-sm"
+          >
             Dashboard
           </Link>
-        </div>
-
-        <div className="flex items-center gap-x-5">
           <ThemeToggle />
 
           {(await isAuthenticated()) ? (
