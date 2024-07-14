@@ -1,8 +1,9 @@
-import React, { use } from "react";
+import React from "react";
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "@/lib/db";
 import { redirect } from "next/navigation";
+import { stripe } from "@/lib/stripe";
 
 async function getData({
   email,
@@ -33,6 +34,21 @@ async function getData({
         kindeId: id,
         email,
         name,
+      },
+    });
+  }
+
+  if (!user?.stripeCustomerId) {
+    const data = await stripe.customers.create({
+      email,
+    });
+
+    await prisma.user.update({
+      where: {
+        kindeId: id,
+      },
+      data: {
+        stripeCustomerId: data.id,
       },
     });
   }

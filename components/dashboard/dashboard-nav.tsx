@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { CreditCard, Settings, Home } from "lucide-react";
+import { Settings, Home } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -15,11 +15,6 @@ const navItems = [
     name: "Settings",
     href: "/dashboard/settings",
     icon: Settings,
-  },
-  {
-    name: "Billing",
-    href: "/dashboard/billing",
-    icon: CreditCard,
   },
 ];
 

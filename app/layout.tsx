@@ -16,16 +16,18 @@ export const metadata: Metadata = {
 };
 
 async function getData(userId: string) {
-  const data = await prisma.user.findUnique({
-    where: {
-      kindeId: userId,
-    },
-    select: {
-      colorScheme: true,
-    },
-  });
+  if (userId) {
+    const data = await prisma.user.findUnique({
+      where: {
+        kindeId: userId,
+      },
+      select: {
+        colorScheme: true,
+      },
+    });
 
-  return data;
+    return data;
+  }
 }
 
 export default async function RootLayout({
